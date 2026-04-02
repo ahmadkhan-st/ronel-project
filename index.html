@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronel - Django Landing Template</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d1e21;
+            color: #ffffff;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative;
+            padding: 180px 0 140px;
+            text-align: center;
+        }
+        .hero-bg-wrapper {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            /* Replace with your actual image path */
+            background-image: url('images/shi_pin_hui_yi_shi_.jpg'); 
+        }
+        .hero-bg-wrapper::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(13, 30, 33, 0.94) 0%, rgba(18, 45, 50, 0.88) 100%);
+        }
+        .hero-container { position: relative; z-index: 2; }
+        .hero-title { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
+
+        /* --- WHITE SECTIONS --- */
+        .white-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            color: #0d1b3e;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-header h2 { font-weight: 700; font-size: 2.5rem; color: #0d1b3e; }
+        .underline {
+            width: 50px; height: 3px;
+            background-color: #5c6bc0;
+            margin: 15px auto 25px;
+        }
+        .section-header p { color: #666; max-width: 750px; margin: 0 auto; line-height: 1.8; }
+
+        /* --- DEMO GRID --- */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            column-gap: 35px; row-gap: 60px;
+        }
+        .demo-card { text-align: center; }
+        .image-container {
+            border-radius: 12px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: 0.4s ease;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 25px;
+            background: #fff;
+            padding: 10px;
+        }
+        .image-container img {
+            width: 100%; height: 250px;
+            object-fit: cover; border-radius: 6px;
+            transition: 0.6s ease;
+        }
+        .image-container:hover { transform: translateY(-15px); box-shadow: 0 25px 55px rgba(0,0,0,0.15); }
+        .image-container:hover img { transform: scale(1.05); }
+        .demo-card h3 { font-size: 1.2rem; font-weight: 600; color: #0d1b3e; }
+
+        /* --- FEATURES --- */
+        .feature-box { text-align: center; padding: 30px 15px; }
+        .feature-icon { font-size: 40px; color: #5c6bc0; margin-bottom: 20px; }
+        .feature-box h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            padding: 100px 0;
+            background: #e3f2fd;
+            text-align: center;
+            color: #0d1b3e;
+        }
+        .btn-buy {
+            background-color: #5c6bc0;
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn-buy:hover { background-color: #4a59a7; color: #fff; transform: translateY(-3px); }
+
+        /* --- CONTACT --- */
+        .form-control { border: 1px solid #e0e0e0; padding: 12px; }
+        .btn-send { background-color: #5c6bc0; color: #fff; padding: 12px 35px; border: none; border-radius: 5px; font-weight: 600; }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background-color: #0d1e21;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-social a { color: #fff; margin: 0 15px; font-size: 1.2rem; opacity: 0.7; transition: 0.3s; }
+        .footer-social a:hover { opacity: 1; color: #5c6bc0; }
+
+        /* Responsive */
+        @media (max-width: 992px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { 
+            .demo-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand">Navbar</a>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+    <header class="hero-section">
+        <div class="hero-bg-wrapper"></div>
+        <div class="container hero-container">
+            <h1 class="hero-title">Ronel - Django Landing Template</h1>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem;">Beautifully crafted, clean &amp; minimal design for your next project.</p>
+        </div>
+    </header>
+
+    <section class="white-section" id="demos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Home Demos</h2>
+                <div class="underline"></div>
+                <p>Ronel is a beautifully crafted landing template for corporate business, professional websites, and portfolios.</p>
+            </div>
+
+            <div class="demo-grid">
+                <div class="demo-card"><div class="image-container"><img src="images/download1.jpg" alt="Demo"></div><h3>Home page - 1</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download2.jpg" alt="Demo"></div><h3>Home page - 2</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download3.jpg" alt="Demo"></div><h3>Home page - 3</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download4.jpg" alt="Demo"></div><h3>Home page - 4</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download2.jpg" alt="Demo"></div><h3>Home page - 5</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download7.jpg" alt="Demo"></div><h3>Home page - 6</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download6.jpg" alt="Demo"></div><h3>Home page - 7</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download.jpg" alt="Demo"></div><h3>Home page - 8</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download1.jpg" alt="Demo"></div><h3>Home page - 9</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download4.jpg" alt="Demo"></div><h3>Home page - 10</h3></div>
+                <div class="demo-card"><div class="image-container"><img src="images/download.jpg" alt="Demo"></div><h3>Home page - 11</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="white-section pt-0" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span style="color:#5c6bc0; font-weight:600; text-transform:uppercase; font-size:0.8rem;">Features</span>
+                <h2 class="mt-2">We do all Creative Features</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-microchip feature-icon"></i>
+                        <h4>Built with Bootstrap</h4>
+                        <p>Pure Bootstrap v5.3.3 framework.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-wand-magic-sparkles feature-icon"></i>
+                        <h4>Easy to customize</h4>
+                        <p>Reusable components.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-laptop-code feature-icon"></i>
+                        <h4>Fully Responsive</h4>
+                        <p>Mobile-first design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Ronel - App Landing Django Template</h2>
+            <p>Start working with Ronel fast build your website</p>
+            <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+    </section>
+
+    <section class="white-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>GET IN TOUCH</h2>
+                <div class="underline"></div>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <form class="row g-3">
+                    <div class="col-12"><label class="form-label text-dark">Name*</label><input type="text" class="form-control"></div>
+                    <div class="col-md-6"><label class="form-label text-dark">Email*</label><input type="email" class="form-control"></div>
+                    <div class="col-md-6"><label class="form-label text-dark">Subject*</label><input type="text" class="form-control"></div>
+                    <div class="col-12"><label class="form-label text-dark">Message</label><textarea class="form-control" rows="4"></textarea></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn-send">Send Message</button></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-social mb-4">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">2026 © Ronel. Design by Themesdesign.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
